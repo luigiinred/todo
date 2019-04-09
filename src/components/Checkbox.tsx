@@ -1,36 +1,33 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import Checkbox from './Checkbox'
-
 interface Props {
-	label: string;
+	checked: boolean;
 }
 
 export default (props: Props) => (
 	<View style={styles.container}>
-    <Checkbox checked={false}/>
-		<Text style={styles.label}>{props.label}</Text>
+		<Text style={styles.label}>{props.checked ? '✔': ''}</Text>
 	</View>
 );
 
 const styles = StyleSheet.create({
 	container: {
 		flexDirection: 'row',
-		marginHorizontal: 16,
-		marginVertical: 2,
-		padding: 4,
-		borderRadius: 4,
-		backgroundColor: '#3a3b3d',
+		margin: 4,
+		width: 28,
+		height: 28,
+		borderRadius: 2,
+		backgroundColor: 'white',
 		shadowColor: '#000',
 		shadowOffset: { width: 0, height: 1 },
-		shadowOpacity: 0.2,
-		shadowRadius: 2
+		shadowOpacity: 0.1,
+		shadowRadius: 1
 	},
 	label: {
 		flex: 1,
 		fontSize: 16,
-		padding: 8,
+		padding: 4,
 		color: '#f1f1f1'
 	}
 });
