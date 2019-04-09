@@ -1,0 +1,53 @@
+import React, { Component } from 'react';
+import { StyleSheet, Text, View, FlatList } from 'react-native';
+
+import Item from './components/Item';
+import TodoInput from './components/TodoInput';
+
+interface Props {}
+
+interface State {
+	items: [
+		{
+			label: string;
+			isCompleted?: boolean;
+		}
+	];
+}
+export default class App extends Component<Props, State> {
+	state = {
+		items: [
+		]
+	};
+
+	onAdd(label: string) {
+		this.setState({ items: [ { label }, ...this.state.items ] });
+	}
+
+	render() {
+		return (
+			<View style={styles.container}>
+				<Text style={styles.welcome}>My Todo App!!!</Text>
+				<TodoInput onAdd={(label: string) => this.onAdd(label)} />
+        <FlatList
+          data={this.state.items}
+          renderItem={({item}) => <Item label={item.label} isCompleted={item.isCompleted} />}
+        />
+			</View>
+		);
+	}
+}
+
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		paddingTop: 42,
+		backgroundColor: '#2c2d2f'
+	},
+	welcome: {
+		fontSize: 32,
+		textAlign: 'center',
+		padding: 8,
+		color: "#f1f1f1"
+  },
+});
