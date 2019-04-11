@@ -1,14 +1,21 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+
+import Checkbox from './Checkbox'
 
 interface Props {
-	label: string;
+  label: string;
+  isCompleted: boolean;
+  onToggleChecked: () => void;
 }
 
 export default (props: Props) => (
-	<View style={styles.container}>
-		<Text style={styles.label}>{props.label}</Text>
-	</View>
+  <TouchableOpacity onPress={props.onToggleChecked}>
+    <View style={styles.container}>
+      <Checkbox checked={props.isCompleted}/>
+      <Text style={styles.label}>{props.label}</Text>
+    </View>
+  </TouchableOpacity>
 );
 
 const styles = StyleSheet.create({
